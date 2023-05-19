@@ -979,16 +979,16 @@ std::unique_ptr<compress_provider> get_compressor_from_header(
 
     // If we're here, we didn't match the caller's compressor above;
     // try any that we saved off in order of highest to lowest rank
-    for (auto t = tokens.rbegin(); t != tokens.rend(); t++)
+    for (auto ts = tokens.rbegin(); ts != tokens.rend(); ts++)
     {
-        auto coding = encoding.substr(t->start, t->length);
+        auto coding = encoding.substr(ts->start, ts->length);
 
         // N.B for TE, "trailers" will simply fail to instantiate a
         // compressor; ditto for "*" and "identity" for Accept-Encoding
-        auto compressor = web::http::compression::builtin::_make_compressor(f, coding);
-        if (compressor)
+        auto coding_compressor = web::http::compression::builtin::_make_compressor(f, coding);
+        if (coding_compressor)
         {
-            return compressor;
+            return coding_compressor;
         }
         if (type == header_types::accept_encoding && utility::details::str_iequal(coding, _XPLATSTR("identity")))
         {
