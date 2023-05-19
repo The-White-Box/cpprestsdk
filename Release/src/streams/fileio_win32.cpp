@@ -592,7 +592,7 @@ size_t _fill_buffer_fsb(_In_ _file_info_impl* fInfo,
 
     if (fInfo->m_buffer == nullptr || safeCount > fInfo->m_bufsize)
     {
-        if (fInfo->m_buffer != nullptr) delete fInfo->m_buffer;
+        delete fInfo->m_buffer;
 
         fInfo->m_bufsize = safeCount.Max(fInfo->m_buffer_size);
         fInfo->m_buffer = new char[fInfo->m_bufsize * char_size];
