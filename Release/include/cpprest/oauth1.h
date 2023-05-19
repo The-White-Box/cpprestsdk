@@ -421,7 +421,7 @@ public:
     utility::string_t _build_hmac_sha1_signature(http_request request, details::oauth1_state state) const
     {
         auto text(_build_signature_base_string(std::move(request), std::move(state)));
-        auto digest(_hmac_sha1(_build_key(), std::move(text)));
+        auto digest(_hmac_sha1(_build_key(), text));
         auto signature(utility::conversions::to_base64(std::move(digest)));
         return signature;
     }
