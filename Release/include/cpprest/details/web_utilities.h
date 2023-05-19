@@ -65,7 +65,7 @@ public:
     /// <summary>
     /// Constructs an empty set of credentials without a user name or password.
     /// </summary>
-    credentials() {}
+    credentials() = default;
 
     /// <summary>
     /// Constructs credentials from given user name and password.

@@ -126,7 +126,7 @@ public:
     /// <summary>
     /// Constructs an initially empty invalid access token.
     /// </summary>
-    oauth1_token() {}
+    oauth1_token() = default;
 
     /// <summary>
     /// Constructs a OAuth1 token from a given access token and secret.

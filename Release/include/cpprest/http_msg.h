@@ -954,7 +954,7 @@ public:
     /// <summary>
     /// Destructor frees any held resources.
     /// </summary>
-    ~http_request() {}
+    ~http_request() = default;
 
     /// <summary>
     /// Get the method (GET/PUT/POST/DELETE) of the request message.

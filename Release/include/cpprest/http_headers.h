@@ -129,7 +129,7 @@ public:
     /// <summary>
     /// Constructs an empty set of HTTP headers.
     /// </summary>
-    http_headers() {}
+    http_headers() = default;
 
     /// <summary>
     /// Copy constructor.

@@ -395,7 +395,7 @@ http_client::http_client(const uri& base_uri, const http_client_config& client_c
         std::make_shared<oauth2::details::oauth2_handler>(client_config.oauth2())));
 }
 
-http_client::~http_client() CPPREST_NOEXCEPT {}
+http_client::~http_client() CPPREST_NOEXCEPT = default;
 
 const http_client_config& http_client::client_config() const { return m_pipeline->m_last_stage->client_config(); }
 
