@@ -890,7 +890,7 @@ void windows_request_context::async_process_response()
     {
         if (!m_decompress_header.empty())
         {
-            auto factories = m_response._get_impl()->decompress_factories();
+            auto &factories = m_response._get_impl()->decompress_factories();
             try
             {
                 m_decompressor = http::compression::details::get_decompressor_from_header(
@@ -1090,7 +1090,6 @@ void windows_request_context::transmit_body()
                     cancel_request(std::current_exception());
                     return;
                 }
-                _ASSERTE(bytes_read >= 0);
 
                 // Compress this chunk; if we read no data, allow the compressor to finalize its stream
                 http::compression::operation_hint hint = http::compression::operation_hint::has_more;
