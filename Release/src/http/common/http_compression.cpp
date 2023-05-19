@@ -954,7 +954,7 @@ std::unique_ptr<compress_provider> get_compressor_from_header(
                 }
                 else
                 {
-                    for (auto x = tokens.begin(); x != tokens.end(); x++)
+                    for (auto x = tokens.begin(); x != tokens.end(); ++x)
                     {
                         if (t.rank <= x->rank)
                         {
@@ -979,7 +979,7 @@ std::unique_ptr<compress_provider> get_compressor_from_header(
 
     // If we're here, we didn't match the caller's compressor above;
     // try any that we saved off in order of highest to lowest rank
-    for (auto ts = tokens.rbegin(); ts != tokens.rend(); ts++)
+    for (auto ts = tokens.rbegin(); ts != tokens.rend(); ++ts)
     {
         auto coding = encoding.substr(ts->start, ts->length);
 
