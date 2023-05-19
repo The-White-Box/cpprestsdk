@@ -538,9 +538,9 @@ public:
     }
 
 private:
-    static pplx::task<T> _parse(streams::streambuf<CharType> buffer, std::false_type, std::false_type)
+    static pplx::task<T> _parse(streams::streambuf<CharType>, std::false_type, std::false_type)
     {
-        _parse_floating_point(buffer);
+        throw std::logic_error("not implemented");
     }
 
     static pplx::task<T> _parse(streams::streambuf<CharType> buffer, std::true_type, std::false_type)
