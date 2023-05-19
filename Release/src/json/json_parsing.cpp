@@ -653,11 +653,11 @@ bool JSON_StringParser<CharType>::CompleteComment(typename JSON_Parser<CharType>
     return true;
 }
 
-void convert_append_unicode_code_unit(JSON_Parser<utf16char>::Token& token, utf16string value)
+void convert_append_unicode_code_unit(JSON_Parser<utf16char>::Token& token, const utf16string &value)
 {
     token.string_val.append(value);
 }
-void convert_append_unicode_code_unit(JSON_Parser<char>::Token& token, utf16string value)
+void convert_append_unicode_code_unit(JSON_Parser<char>::Token& token, const utf16string& value)
 {
     token.string_val.append(::utility::conversions::utf16_to_utf8(value));
 }
