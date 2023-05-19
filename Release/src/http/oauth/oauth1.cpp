@@ -248,11 +248,11 @@ utility::string_t oauth1_config::_build_signature_base_string(http_request reque
         utility::string_t str = request.extract_string(true).get();
         request.set_body(str, web::http::details::mime_types::application_x_www_form_urlencoded);
         uri v = http::uri_builder(request.absolute_uri()).append_query(std::move(str), false).to_uri();
-        result += _build_normalized_parameters(std::move(v), std::move(state));
+        result += _build_normalized_parameters(std::move(v), state);
     }
     else
     {
-        result += _build_normalized_parameters(std::move(u), std::move(state));
+        result += _build_normalized_parameters(std::move(u), state);
     }
 
     return result;

@@ -74,7 +74,7 @@ std::string convert_utf16le_to_utf8(utf16string src, bool erase_bom)
     {
         src.erase(0, 1);
     }
-    return utf16_to_utf8(std::move(src));
+    return utf16_to_utf8(src);
 }
 
 utility::string_t convert_utf16le_to_string_t(utf16string src, bool erase_bom)
@@ -696,7 +696,7 @@ utf8string details::http_msg_base::extract_utf8string(bool ignore_content_type)
         body.resize((std::string::size_type)buf_r.in_avail());
         buf_r.getn(const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(body.data())), body.size())
             .get(); // There is no risk of blocking.
-        return latin1_to_utf8(std::move(body));
+        return latin1_to_utf8(body);
     }
 
     // utf-16
@@ -773,7 +773,7 @@ utf16string details::http_msg_base::extract_utf16string(bool ignore_content_type
         body.resize((std::string::size_type)buf_r.in_avail());
         buf_r.getn(const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(body.data())), body.size())
             .get(); // There is no risk of blocking.
-        return latin1_to_utf16(std::move(body));
+        return latin1_to_utf16(body);
     }
 
     // utf-16
@@ -830,7 +830,7 @@ utility::string_t details::http_msg_base::extract_string(bool ignore_content_typ
         buf_r.getn(const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(body.data())), body.size())
             .get(); // There is no risk of blocking.
         // Could optimize for linux in the future if a latin1_to_utf8 function was written.
-        return to_string_t(latin1_to_utf16(std::move(body)));
+        return to_string_t(latin1_to_utf16(body));
     }
 
     // utf-8.
@@ -896,7 +896,7 @@ json::value details::http_msg_base::_extract_json(bool ignore_content_type)
         buf_r.getn(const_cast<uint8_t*>(reinterpret_cast<const uint8_t*>(body.data())), body.size())
             .get(); // There is no risk of blocking.
         // On Linux could optimize in the future if a latin1_to_utf8 function is written.
-        return json::value::parse(to_string_t(latin1_to_utf16(std::move(body))));
+        return json::value::parse(to_string_t(latin1_to_utf16(body)));
     }
 
     // utf-8, usascii and ascii
@@ -995,7 +995,7 @@ static utility::string_t convert_body_to_string_t(const utility::string_t& conte
         std::string body;
         body.resize(streambuf.in_avail());
         if (streambuf.scopy((unsigned char*)&body[0], body.size()) == 0) return string_t();
-        return to_string_t(latin1_to_utf16(std::move(body)));
+        return to_string_t(latin1_to_utf16(body));
     }
 
     // utf-8.
