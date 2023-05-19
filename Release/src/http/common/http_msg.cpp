@@ -233,7 +233,7 @@ void parse_headers_string(_Inout_z_ utility::char_t* headersStr, web::http::http
     while (pos!=std::string::npos)
     {
         const utility::string_t header_line(str, startpos, pos - startpos);
-        const size_t colonIndex = header_line.find_first_of(_XPLATSTR(":"));
+        const size_t colonIndex = header_line.find_first_of(_XPLATSTR(':'));
         if (colonIndex != utility::string_t::npos)
         {
             utility::string_t key = header_line.substr(0, colonIndex);
@@ -593,7 +593,7 @@ static void parse_content_type_and_charset(const utility::string_t& content_type
                                            utility::string_t& content,
                                            utility::string_t& charset)
 {
-    const size_t semi_colon_index = content_type.find_first_of(_XPLATSTR(";"));
+    const size_t semi_colon_index = content_type.find_first_of(_XPLATSTR(';'));
 
     // No charset specified.
     if (semi_colon_index == utility::string_t::npos)
@@ -609,7 +609,7 @@ static void parse_content_type_and_charset(const utility::string_t& content_type
     trim_whitespace(content);
     utility::string_t possible_charset = content_type.substr(semi_colon_index + 1);
     trim_whitespace(possible_charset);
-    const size_t equals_index = possible_charset.find_first_of(_XPLATSTR("="));
+    const size_t equals_index = possible_charset.find_first_of(_XPLATSTR('='));
 
     // No charset specified.
     if (equals_index == utility::string_t::npos)
