@@ -388,7 +388,7 @@ public:
     concurrency::streams::streambuf<CharType> streambuf() const { return helper()->m_buffer; }
 
 protected:
-    void set_helper(std::shared_ptr<details::basic_ostream_helper<CharType>> helper) { m_helper = helper; }
+    void set_helper(std::shared_ptr<details::basic_ostream_helper<CharType>> helper) { m_helper = std::move(helper); }
 
 private:
     template<typename T>
@@ -1657,7 +1657,7 @@ public:
 private:
     static pplx::task<signed char> _get_char(streams::streambuf<CharType> buffer)
     {
-        concurrency::streams::streambuf<CharType> buf = buffer;
+        concurrency::streams::streambuf<CharType> buf = std::move(buffer);
         return buf.bumpc().then([=](pplx::task<int_type> op) -> signed char {
             int_type val = op.get();
             if (val == traits::eof()) throw std::runtime_error("reached end-of-stream while constructing a value");
@@ -1686,7 +1686,7 @@ public:
 private:
     static pplx::task<unsigned char> _get_char(streams::streambuf<CharType> buffer)
     {
-        concurrency::streams::streambuf<CharType> buf = buffer;
+        concurrency::streams::streambuf<CharType> buf = std::move(buffer);
         return buf.bumpc().then([=](pplx::task<int_type> op) -> unsigned char {
             int_type val = op.get();
             if (val == traits::eof()) throw std::runtime_error("reached end-of-stream while constructing a value");
@@ -1715,7 +1715,7 @@ public:
 private:
     static pplx::task<char> _get_char(streams::streambuf<CharType> buffer)
     {
-        concurrency::streams::streambuf<CharType> buf = buffer;
+        concurrency::streams::streambuf<CharType> buf = std::move(buffer);
         return buf.bumpc().then([=](pplx::task<int_type> op) -> char {
             int_type val = op.get();
             if (val == traits::eof()) throw std::runtime_error("reached end-of-stream while constructing a value");

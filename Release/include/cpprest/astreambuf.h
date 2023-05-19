@@ -442,7 +442,7 @@ public:
     /// <param name="eptr">Pointer to the exception.</param>
     virtual pplx::task<void> close(std::ios_base::openmode mode, std::exception_ptr eptr)
     {
-        if (m_currentException == nullptr) m_currentException = eptr;
+        if (m_currentException == nullptr) m_currentException = std::move(eptr);
         return close(mode);
     }
 
