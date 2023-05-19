@@ -734,13 +734,13 @@ std::map<utility::string_t, utility::string_t> uri::split_query(const utility::s
         else if (equals_index == 0)
         {
             utility::string_t value(key_value_pair.begin() + equals_index + 1, key_value_pair.end());
-            results[utility::string_t {}] = value;
+            results[utility::string_t {}] = std::move(value);
         }
         else
         {
             utility::string_t key(key_value_pair.begin(), key_value_pair.begin() + equals_index);
             utility::string_t value(key_value_pair.begin() + equals_index + 1, key_value_pair.end());
-            results[key] = value;
+            results[key] = std::move(value);
         }
     }
 
