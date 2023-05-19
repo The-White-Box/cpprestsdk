@@ -86,7 +86,7 @@ bool verify_cert_chain_platform_specific(boost::asio::ssl::verify_context& verif
             return false;
         }
 
-        certChain.push_back(std::move(certData));
+        certChain.emplace_back(std::move(certData));
     }
 
     auto verify_result = verify_X509_cert_chain(certChain, hostName);
