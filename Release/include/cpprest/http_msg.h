@@ -1287,7 +1287,7 @@ public:
     /// This cannot be used in conjunction with any external means of compression.  The Transfer-Encoding
     /// header will be managed internally, and must not be set by the client.
     /// </remarks>
-    bool set_compressor(utility::string_t algorithm)
+    bool set_compressor(const utility::string_t &algorithm)
     {
         _m_impl->set_compressor(http::compression::builtin::make_compressor(algorithm));
         return (bool)_m_impl->compressor();
