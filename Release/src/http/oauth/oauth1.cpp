@@ -190,18 +190,18 @@ utility::string_t oauth1_config::_build_normalized_parameters(web::http::uri u, 
     }
 
     // Push oauth1 parameters.
-    queries.push_back(oauth1_strings::version + U("=1.0"));
-    queries.push_back(oauth1_strings::consumer_key + U("=") + web::uri::encode_data_string(consumer_key()));
+    queries.emplace_back(oauth1_strings::version + U("=1.0"));
+    queries.emplace_back(oauth1_strings::consumer_key + U("=") + web::uri::encode_data_string(consumer_key()));
     if (!m_token.access_token().empty())
     {
-        queries.push_back(oauth1_strings::token + U("=") + web::uri::encode_data_string(m_token.access_token()));
+        queries.emplace_back(oauth1_strings::token + U("=") + web::uri::encode_data_string(m_token.access_token()));
     }
-    queries.push_back(oauth1_strings::signature_method + U("=") + method());
-    queries.push_back(oauth1_strings::timestamp + U("=") + state.timestamp());
-    queries.push_back(oauth1_strings::nonce + U("=") + state.nonce());
+    queries.emplace_back(oauth1_strings::signature_method + U("=") + method());
+    queries.emplace_back(oauth1_strings::timestamp + U("=") + state.timestamp());
+    queries.emplace_back(oauth1_strings::nonce + U("=") + state.nonce());
     if (!state.extra_key().empty())
     {
-        queries.push_back(state.extra_key() + U("=") + web::uri::encode_data_string(state.extra_value()));
+        queries.emplace_back(state.extra_key() + U("=") + web::uri::encode_data_string(state.extra_value()));
     }
 
     // Sort parameters and build the string.

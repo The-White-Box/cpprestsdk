@@ -60,8 +60,8 @@ struct threadpool_impl final : crossplat::threadpool
 private:
     void add_thread()
     {
-        m_threads.push_back(
-            std::unique_ptr<boost::asio::detail::thread>(new boost::asio::detail::thread([&] { thread_start(this); })));
+        m_threads.emplace_back(
+            new boost::asio::detail::thread([&] { thread_start(this); }));
     }
 
 #if defined(__ANDROID__)

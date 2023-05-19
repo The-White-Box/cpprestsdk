@@ -1148,7 +1148,7 @@ public:
 
         if (iter == m_elements.end() || key != iter->first)
         {
-            return m_elements.insert(iter, std::pair<utility::string_t, value>(key, value()))->second;
+            return m_elements.emplace(iter, key, value())->second;
         }
 
         return iter->second;
