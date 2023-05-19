@@ -541,7 +541,7 @@ public:
     /// <summary>
     /// Default constructor.
     /// </summary>
-    rawptr_buffer() {}
+    rawptr_buffer() = default;
 };
 
 /// <summary>

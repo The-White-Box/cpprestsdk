@@ -36,7 +36,7 @@ class basic_ostream_helper
 public:
     basic_ostream_helper(streams::streambuf<CharType> buffer) : m_buffer(buffer) {}
 
-    ~basic_ostream_helper() {}
+    ~basic_ostream_helper() = default;
 
 private:
     template<typename CharType1>
@@ -51,7 +51,7 @@ class basic_istream_helper
 public:
     basic_istream_helper(streams::streambuf<CharType> buffer) : m_buffer(buffer) {}
 
-    ~basic_istream_helper() {}
+    ~basic_istream_helper() = default;
 
 private:
     template<typename CharType1>
@@ -110,7 +110,7 @@ public:
     /// <summary>
     /// Default constructor
     /// </summary>
-    basic_ostream() {}
+    basic_ostream() = default;
 
     /// <summary>
     /// Copy constructor
@@ -504,7 +504,7 @@ public:
     typedef char_traits<CharType> traits;
     typedef typename traits::int_type int_type;
 
-    _type_parser_base() {}
+    _type_parser_base() = default;
 
 protected:
     // Aid in parsing input: skipping whitespace characters.
@@ -581,7 +581,7 @@ public:
     /// <summary>
     /// Default constructor
     /// </summary>
-    basic_istream() {}
+    basic_istream() = default;
 
     /// <summary>
     /// Constructor

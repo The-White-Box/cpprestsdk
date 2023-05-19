@@ -128,7 +128,7 @@ public:
     /// <summary>
     /// Virtual constructor for stream buffers.
     /// </summary>
-    virtual ~basic_streambuf() {}
+    virtual ~basic_streambuf() = default;
 
     /// <summary>
     /// <c>can_read</c> is used to determine whether a stream buffer will support read operations (get).
@@ -821,7 +821,7 @@ public:
     /// <summary>
     /// Default constructor.
     /// </summary>
-    streambuf() {}
+    streambuf() = default;
 
     /// <summary>
     /// Converter Constructor.
@@ -873,7 +873,7 @@ public:
     /// <summary>
     /// Destructor
     /// </summary>
-    virtual ~streambuf() {}
+    virtual ~streambuf() = default;
 
     const std::shared_ptr<details::basic_streambuf<_CharType>>& get_base() const
     {
